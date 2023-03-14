@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
+// Objective: show the execution order of lifecycle functions
 class MainActivity : AppCompatActivity() {
     var count = 0
     lateinit var label:TextView
@@ -23,26 +24,31 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        println("onRestart called")
+        println("onRestart is called")
     }
 
     override fun onStart() {
         super.onStart()
-        println("onStart called")
+        println("onStart is called")
+    }
+    override fun onResume() {
+        super.onResume()
+        println("onResume is called")
+        label.text = count.toString()
     }
 
     override fun onPause() {
         super.onPause()
-        println("onPause called")
+        println("onPause is called")
     }
 
     override fun onStop() {
         super.onStop()
-        println("onStop called")
+        println("onStop is called")
     }
 
-    override fun onResume() {
-        super.onResume()
-        label.text = count.toString()
+    override fun onDestroy() {
+        super.onDestroy()
+        println("onDestroy is called")
     }
 }
