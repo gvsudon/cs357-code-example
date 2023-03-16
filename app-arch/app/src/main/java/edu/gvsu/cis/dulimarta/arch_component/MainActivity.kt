@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 
 // Objective: show the execution order of lifecycle functions
 class MainActivity : AppCompatActivity() {
-    lateinit var label:TextView
     lateinit var myViewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,17 +15,14 @@ class MainActivity : AppCompatActivity() {
         println("onCreate called")
         myViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         val addBtn = findViewById<Button>(R.id.add_button)
-        label = findViewById<TextView>(R.id.text_label)
+        val label = findViewById<TextView>(R.id.text_label)
 
+        myViewModel.counter.observe(this) {
+            label.text = it.toString()
+        }
         addBtn.setOnClickListener {
             myViewModel.addCounter()
-            label.text = myViewModel.counter.toString()
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-        println("onResume is called")
-        label.text = myViewModel.counter.toString()
-    }
+    // We don't need the onResume override
 }
