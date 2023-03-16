@@ -86,4 +86,12 @@ extension ViewController: UITableViewDelegate {
             performSegue(withIdentifier: "carDetails", sender: self)
         }
     }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let a = UIContextualAction(style: .normal, title: "Rent") { action, view, handler in
+            handler(true)
+        }
+        return UISwipeActionsConfiguration(actions: [a])
+        
+    }
 }
