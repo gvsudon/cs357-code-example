@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav_graph"
+    app:startDestination="@id/numberInputFragment">
+    <fragment
+        android:id="@+id/numberInputFragment"
+        android:name="edu.gvsu.cis.navigationexample.NumberInputFragment"
+        android:label="fragment_number_input"
+        tools:layout="@layout/fragment_number_input" >
+        <action
+            android:id="@+id/toArithOp"
+            app:destination="@id/arithmeticOpFragment"
+            app:popUpTo="@id/numberInputFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/arithmeticOpFragment"
+        android:name="edu.gvsu.cis.navigationexample.ArithmeticOpFragment"
+        android:label="fragment_arithmetic_op"
+        tools:layout="@layout/fragment_arithmetic_op" >
+        <argument
+            android:name="first"
+            app:argType="integer"/>
+        <argument
+            android:name="second"
+            app:argType="integer" />
+    </fragment>
+</navigation>
