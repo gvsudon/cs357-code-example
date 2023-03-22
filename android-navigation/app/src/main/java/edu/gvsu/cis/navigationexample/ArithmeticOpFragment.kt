@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
 /**
@@ -17,6 +22,9 @@ import androidx.navigation.fragment.navArgs
 class ArithmeticOpFragment : Fragment() {
     val inputArgs: ArithmeticOpFragmentArgs by navArgs()
     lateinit var label:TextView
+    lateinit var addBtn:Button
+    lateinit var subBtn:Button
+    lateinit var navCtrl:NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,8 +39,27 @@ class ArithmeticOpFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navCtrl = findNavController()
         requireActivity().apply {
             label = findViewById<TextView>(R.id.text_label)
+            addBtn = findViewById<Button>(R.id.add_btn)
+            subBtn = findViewById<Button>(R.id.subtract_btn)
+        }
+        addBtn.setOnClickListener {
+            val result = bundleOf("op" to "addition",
+                "value" to inputArgs.first + inputArgs.second)
+            navCtrl.previousBackStackEntry
+                ?.savedStateHandle
+                ?.set("result", result)
+            navCtrl.popBackStack()
+        }
+        subBtn.setOnClickListener {
+            val result = bundleOf("op" to "subtraction",
+                "value" to inputArgs.first - inputArgs.second)
+            navCtrl.previousBackStackEntry
+                ?.savedStateHandle
+                ?.set("result", result)
+            navCtrl.popBackStack()
         }
     }
 

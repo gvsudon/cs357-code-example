@@ -12,8 +12,7 @@
         <action
             android:id="@+id/toArithOp"
             app:destination="@id/arithmeticOpFragment"
-            app:popUpTo="@id/numberInputFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/numberInputFragment"/>
     </fragment>
     <fragment
         android:id="@+id/arithmeticOpFragment"
