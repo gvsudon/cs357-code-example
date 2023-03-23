@@ -1,58 +1,24 @@
 package edu.gvsu.cis.navigationexample
 
-import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.snackbar.Snackbar
+import androidx.navigation.ui.setupActionBarWithNavController
 
 class MainActivity : AppCompatActivity() {
-    lateinit var input1:EditText
+    lateinit var navCtrl: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Enable Back button as in iOS style
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
-        navHost.navController
-//        val doArith = findViewById<Button>(R.id.arithmetic_btn)
-
-//        input1 = findViewById<EditText>(R.id.firstNum)
-//        val input2 = findViewById<EditText>(R.id.secondNum)
-
-//        val whenDone = registerForActivityResult(
-//            ActivityResultContracts.StartActivityForResult()
-//        ) {
-//            if (it.resultCode == Activity.RESULT_OK) {
-//                val arithResult = it.data?.getIntExtra("result", 0)
-//                Snackbar.make(input1, "Arithmetric result is $arithResult", Snackbar.LENGTH_LONG)
-//                    .show()
-//            }
-//        }
-//        doArith.setOnClickListener {
-//            val arithOp = Intent(this, ArithmeticActivity::class.java)
-//            input1.text.toString().toIntOrNull()?.let {
-//
-//            }
-//            arithOp.putExtra("first", input1.text.toString().toIntOrNull() ?:  0)
-//            arithOp.putExtra("second", input2.text.toString().toIntOrNull() ?: 0)
-//
-//            startActivityForResult(arithOp, 0xBeef)
-//            whenDone.launch(arithOp)
-//        }
+        navCtrl = navHost.navController
+        setupActionBarWithNavController(navCtrl)
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        data?.let {
-//            val arithResult = it.getIntExtra("result", 0)
-//            Snackbar.make(input1, "Arithmetic result is $arithResult", Snackbar.LENGTH_LONG)
-//                .show()
-//            println("Result of arithmetic is $arithResult")
-//        }
+    override fun onSupportNavigateUp(): Boolean {
+        return navCtrl.navigateUp() || super.onSupportNavigateUp()
+    }
 
-//    }
 }

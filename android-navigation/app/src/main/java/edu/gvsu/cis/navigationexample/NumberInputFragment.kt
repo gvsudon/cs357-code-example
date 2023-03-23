@@ -8,18 +8,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 
 class NumberInputFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    lateinit var navCtrl: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val appNav = findNavController()
+        navCtrl = findNavController()
         val input1: EditText
         val input2: EditText
         val arithmeticBtn: Button
@@ -38,13 +37,12 @@ class NumberInputFragment : Fragment() {
                 input2.text.toString().length > 0 && input2.text.toString().length > 0
         }
         arithmeticBtn.setOnClickListener {
-            println("Button is pressed?")
             val first = input1.text.toString().toInt()
             val second = input2.text.toString().toInt()
             val action = NumberInputFragmentDirections.toArithOp(first, second)
-            appNav.navigate(action)
+            navCtrl.navigate(action)
         }
-        findNavController().currentBackStackEntry
+        navCtrl.currentBackStackEntry
             ?.savedStateHandle
             ?.getLiveData<Bundle>("result")
             ?.observe(viewLifecycleOwner) {
@@ -57,6 +55,7 @@ class NumberInputFragment : Fragment() {
             }
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
