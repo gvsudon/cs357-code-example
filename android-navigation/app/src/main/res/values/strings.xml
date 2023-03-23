@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NavigationExample</string>
+    <string name="app_name">Navigation Graph Example</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

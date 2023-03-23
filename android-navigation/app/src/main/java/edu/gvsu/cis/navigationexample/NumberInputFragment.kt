@@ -27,7 +27,7 @@ class NumberInputFragment : Fragment() {
             input1 = findViewById<EditText>(R.id.firstNum)
             input2 = findViewById<EditText>(R.id.secondNum)
             arithmeticBtn = findViewById<Button>(R.id.arithmetic_btn)
-
+            arithmeticBtn.isEnabled = false
         }
         input1.addTextChangedListener {
             arithmeticBtn.isEnabled =

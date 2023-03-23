@@ -11,8 +11,7 @@
         tools:layout="@layout/fragment_number_input" >
         <action
             android:id="@+id/toArithOp"
-            app:destination="@id/arithmeticOpFragment"
-            app:popUpTo="@id/numberInputFragment"/>
+            app:destination="@id/arithmeticOpFragment" />
     </fragment>
     <fragment
         android:id="@+id/arithmeticOpFragment"
