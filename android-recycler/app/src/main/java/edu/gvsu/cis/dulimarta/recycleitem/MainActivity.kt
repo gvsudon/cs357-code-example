@@ -21,20 +21,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         myViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         recyclerView = findViewById<RecyclerView>(R.id.my_list)
-        recyclerView.adapter = MyAdapter(myViewModel.persons.value!!) {
-//            Snackbar.make(
-//                recyclerView,
-//                "You select ${it.firstName} ${it.lastName}",
-//                Snackbar.LENGTH_LONG
-//            )
-//                .show()
-            val personDetails = Intent(this, PersonDetailsActivity::class.java)
-            personDetails.putExtra("firstName", it.firstName)
-            personDetails.putExtra("lastName", it.lastName)
-            personDetails.putExtra("age", it.age)
-            personDetails.putExtra("address", it.address)
-            startActivity(personDetails)
-        }
+        recyclerView.adapter =
+            MyAdapter(myViewModel.persons.value!!) { p: Person, isLongClick: Boolean ->
+                if (isLongClick) {
+                    val personDetails = Intent(this, PersonDetailsActivity::class.java)
+                    personDetails.putExtra("firstName", p.firstName)
+                    personDetails.putExtra("lastName", p.lastName)
+                    personDetails.putExtra("age", p.age)
+                    personDetails.putExtra("address", p.address)
+                    startActivity(personDetails)
+                } else {
+                    Snackbar.make(
+                        recyclerView,
+                        "You select ${p.firstName} ${p.lastName}",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+
+                }
+            }
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         myViewModel.persons.observe(this) {

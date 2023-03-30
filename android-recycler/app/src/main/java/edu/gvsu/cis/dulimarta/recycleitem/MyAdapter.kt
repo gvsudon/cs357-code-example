@@ -1,13 +1,12 @@
 package edu.gvsu.cis.dulimarta.recycleitem
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(val persons: List<Person>, val selectListener: (Person) -> Unit) :
+class MyAdapter(val persons: List<Person>, val selectListener: (Person, Boolean) -> Unit) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     private var selectedPos = RecyclerView.NO_POSITION
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,7 +30,14 @@ class MyAdapter(val persons: List<Person>, val selectListener: (Person) -> Unit)
         val who = persons.get(position)
         holder.textView.text = "${who.firstName} ${who.lastName}"
         holder.itemView.setOnClickListener {
-            selectListener(who)
+            selectListener(who, false)
+        }
+        holder.itemView.setOnLongClickListener {
+            selectListener(who, true)
+            true
         }
     }
+
+
+
 }
