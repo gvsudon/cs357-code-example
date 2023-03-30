@@ -66,6 +66,11 @@ class ArithmeticOpFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         label.text = "What to do with ${inputArgs.first} and ${inputArgs.second}"
+
+        // Remove previously set result so the observer does not fire multiple times
+        navCtrl.previousBackStackEntry?.savedStateHandle?.let {
+            if (it.contains("result")!!) it.remove<Bundle>("result")
+        }
     }
 
     companion object {
