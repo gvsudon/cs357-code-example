@@ -1,5 +1,6 @@
 package edu.gvsu.cis.dulimarta.recycleitem
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -20,12 +21,19 @@ class MainActivity : AppCompatActivity() {
         myViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         recyclerView = findViewById<RecyclerView>(R.id.my_list)
         recyclerView.adapter = MyAdapter(myViewModel.persons.value!!) {
-            Snackbar.make(
-                recyclerView,
-                "You select ${it.firstName} ${it.lastName}",
-                Snackbar.LENGTH_LONG
-            )
-                .show()
+//            Snackbar.make(
+//                recyclerView,
+//                "You select ${it.firstName} ${it.lastName}",
+//                Snackbar.LENGTH_LONG
+//            )
+//                .show()
+            val personDetails = Intent(this, PersonDetailsActivity::class.java)
+//            personDetails.putExtra("person")
+            personDetails.putExtra("firstName", it.firstName)
+            personDetails.putExtra("lastName", it.lastName)
+            personDetails.putExtra("age", it.age)
+            personDetails.putExtra("address", it.address)
+            startActivity(personDetails)
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
 
