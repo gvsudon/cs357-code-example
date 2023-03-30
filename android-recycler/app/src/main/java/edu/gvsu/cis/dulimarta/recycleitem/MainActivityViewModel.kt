@@ -39,4 +39,20 @@ class MainActivityViewModel : ViewModel() {
         currentList.add(p)
         _data.postValue(currentList)
     }
+
+    fun sortByFirstName() {
+        val currentList = _data.value!!
+        currentList.sortBy {
+            it.firstName
+        }
+        _data.postValue(currentList)
+    }
+
+    fun sortByLastName() {
+        val currentList = _data.value!!
+        currentList.sortBy {
+            it.lastName
+        }
+        _data.postValue(currentList)
+    }
 }

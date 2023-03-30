@@ -3,6 +3,7 @@ package edu.gvsu.cis.dulimarta.recycleitem
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 //            )
 //                .show()
             val personDetails = Intent(this, PersonDetailsActivity::class.java)
-//            personDetails.putExtra("person")
             personDetails.putExtra("firstName", it.firstName)
             personDetails.putExtra("lastName", it.lastName)
             personDetails.putExtra("age", it.age)
@@ -49,6 +49,12 @@ class MainActivity : AppCompatActivity() {
         val addBtn = findViewById<FloatingActionButton>(R.id.add_fab)
         addBtn.setOnClickListener {
             myViewModel.addOneMore()
+        }
+        findViewById<Button>(R.id.sort_by_first).setOnClickListener {
+            myViewModel.sortByFirstName()
+        }
+        findViewById<Button>(R.id.sort_by_last).setOnClickListener {
+            myViewModel.sortByLastName()
         }
     }
 
