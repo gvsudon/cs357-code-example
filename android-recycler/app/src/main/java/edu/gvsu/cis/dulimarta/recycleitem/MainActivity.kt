@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -40,15 +41,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        myViewModel.persons.observe(this) {
-            recyclerView.adapter?.notifyDataSetChanged()
-            Snackbar.make(
-                recyclerView,
-                "Total items on the list ${it.size}",
-                Snackbar.LENGTH_LONG
-            )
-                .show()
+        val swipeHelper: ItemTouchHelper = ItemTouchHelper(rightSwipeCallback)
+        swipeHelper.attachToRecyclerView(recyclerView)
+        myViewModel.updateType.observe(this) {
+            if (it == Int.MAX_VALUE)
+                recyclerView.adapter?.notifyDataSetChanged()
+            else
+                recyclerView.adapter?.notifyItemChanged(it)
         }
         val addBtn = findViewById<FloatingActionButton>(R.id.add_fab)
         addBtn.setOnClickListener {
@@ -68,5 +67,23 @@ class MainActivity : AppCompatActivity() {
             recyclerView.layoutManager = GridLayoutManager(this, 2)
         else
             recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    val rightSwipeCallback = object : ItemTouchHelper.SimpleCallback(0 /* ignore row drag */,
+        ItemTouchHelper.RIGHT /* handle write swipe only */) {
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            // Ignore row drags
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.absoluteAdapterPosition
+            myViewModel.deleteOne(position)
+        }
+
     }
 }

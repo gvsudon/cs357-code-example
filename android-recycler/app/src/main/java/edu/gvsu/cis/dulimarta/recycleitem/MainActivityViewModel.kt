@@ -12,8 +12,12 @@ data class Person(
 )
 
 class MainActivityViewModel : ViewModel() {
-    private val _data = MutableLiveData<MutableList<Person>>(mutableListOf())
-    val persons get(): LiveData<MutableList<Person>> = _data
+    private val _updateType = MutableLiveData<Int>(-1)
+    // _updateType: MAX_INT implies the entire table must be refreshed
+    // _updateType: [0, MAX_INT) implies only a specific row must be refreshed
+    val updateType get(): LiveData<Int> = _updateType
+    private val _persons = MutableLiveData<MutableList<Person>> (mutableListOf())
+    val persons get(): LiveData<MutableList<Person>> =  _persons
     val fakeSource = faker { }
 
     init {
@@ -24,7 +28,7 @@ class MainActivityViewModel : ViewModel() {
                 age = Random.nextInt(20, 70),
                 address = fakeSource.address.cityWithState()
             )
-            _data.value!!.add(p)
+            _persons.value!!.add(p)
         }
     }
 
@@ -35,24 +39,26 @@ class MainActivityViewModel : ViewModel() {
             age = Random.nextInt(20, 70),
             address = fakeSource.address.cityWithState()
         )
-        val currentList = _data.value!!
-        currentList.add(p)
-        _data.postValue(currentList)
+        _persons.value!!.add(p)
+        _updateType.postValue(_persons.value!!.size - 1)
     }
 
     fun sortByFirstName() {
-        val currentList = _data.value!!
-        currentList.sortBy {
+        _persons.value!!.sortBy {
             it.firstName
         }
-        _data.postValue(currentList)
+        _updateType.postValue(Int.MAX_VALUE)
     }
 
     fun sortByLastName() {
-        val currentList = _data.value!!
-        currentList.sortBy {
+        _persons.value!!.sortBy {
             it.lastName
         }
-        _data.postValue(currentList)
+        _updateType.postValue(Int.MAX_VALUE)
+    }
+
+    fun deleteOne(atPos: Int) {
+        _persons.value!!.removeAt(atPos)
+        _updateType.postValue(Int.MAX_VALUE)
     }
 }
