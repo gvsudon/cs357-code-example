@@ -21,7 +21,7 @@ class MainActivityViewModel : ViewModel() {
     val fakeSource = faker { }
 
     init {
-        repeat(100) {
+        repeat(10) {
             val p = Person(
                 firstName = fakeSource.name.firstName(),
                 lastName = fakeSource.name.lastName(),

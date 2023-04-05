@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(val persons: List<Person>, val selectListener: (Person, Boolean) -> Unit) :
+class MyAdapter(val persons: List<Person>,
+                val selectListener: (Person, Boolean) -> Unit) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     private var selectedPos = RecyclerView.NO_POSITION
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
