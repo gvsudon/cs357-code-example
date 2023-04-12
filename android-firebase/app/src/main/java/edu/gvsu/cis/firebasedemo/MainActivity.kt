@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     val vm: MainViewModel by viewModels()
@@ -17,9 +18,19 @@ class MainActivity : AppCompatActivity() {
                 uInfo.text = "Your UID is $it"
             }
         }
+        vm.persons.observe(this) {
+            if (it.size > 0)
+                Snackbar.make(uInfo, "${it.size} items read", Snackbar.LENGTH_LONG)
+                    .show()
+        }
         findViewById<Button>(R.id.logoutBtn).setOnClickListener {
             finish()
             vm.logout()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        vm.fetchMembers()
     }
 }

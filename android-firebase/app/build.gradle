@@ -41,8 +41,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
-//    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'androidx.activity:activity-ktx:1.7.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'io.github.serpro69:kotlin-faker:1.14.0'
 
     testImplementation 'junit:junit:4.13.2'
