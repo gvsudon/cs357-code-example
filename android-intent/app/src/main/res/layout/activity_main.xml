@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8BC34A"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/noData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="No Data"
+        app:layout_constraintBottom_toTopOf="@+id/with_data_oneway"
+        app:layout_constraintEnd_toEndOf="@+id/with_data_oneway"
+        app:layout_constraintStart_toStartOf="@+id/with_data_oneway"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/with_data_oneway"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="1-way Data"
+        app:layout_constraintBottom_toTopOf="@+id/with_data_two_way"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noData" />
+
+    <Button
+        android:id="@+id/with_data_two_way"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="2-way Data"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/with_data_oneway"
+        app:layout_constraintStart_toStartOf="@+id/with_data_oneway"
+        app:layout_constraintTop_toBottomOf="@+id/with_data_oneway" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
