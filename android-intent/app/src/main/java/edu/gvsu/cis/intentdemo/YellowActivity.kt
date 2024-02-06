@@ -7,13 +7,22 @@ import edu.gvsu.cis.intentdemo.databinding.ActivityYellowBinding
 
 class YellowActivity : AppCompatActivity() {
     lateinit var binding: ActivityYellowBinding
+
+    var stockName = intent.getStringExtra("stock")
+    var stockAmount = intent.getIntExtra("unit", 0)
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         binding = ActivityYellowBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
+
         binding.confirmBtn.setOnClickListener {
             val confirmIntent = Intent()
             confirmIntent.putExtra("confirmation", "KTZM2390")
+
             setResult(RESULT_OK, confirmIntent)
             finish()
         }
@@ -21,8 +30,6 @@ class YellowActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val stockName = intent.getStringExtra("stock")
-        val stockAmount = intent.getIntExtra("unit", 0)
         binding.yellowInfo.text = "Buy $stockAmount units of  $stockName stock"
     }
 }
