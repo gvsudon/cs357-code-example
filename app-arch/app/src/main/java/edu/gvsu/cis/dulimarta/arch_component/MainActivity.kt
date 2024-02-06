@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 
 // Objective: show the execution order of lifecycle functions
-class NewMainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     lateinit var myViewModel: MainActivityViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class NewMainActivity : AppCompatActivity() {
     }
 }
 
-class MainActivity: AppCompatActivity() {
+class BadMainActivity: AppCompatActivity() {
     private var counter = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
