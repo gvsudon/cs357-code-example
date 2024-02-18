@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
                     Row {
                         CountingWithViewModel()
                         CountingWithLocalState()
+                        CountingWithBrokenLocalState()
+
                     }
                 }
             }
@@ -42,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CountingWithViewModel(vm: MainActivityViewModel = viewModel()) {
-    val countState by vm.counter.observeAsState(0)
+    val countState by vm.counter.observeAsState(100)
     var active by rememberSaveable {
         mutableStateOf<Boolean>(true)
 
@@ -58,7 +60,20 @@ fun CountingWithViewModel(vm: MainActivityViewModel = viewModel()) {
 @Composable
 fun CountingWithLocalState() {
     var countState by rememberSaveable {
-        mutableStateOf<Int>(9)
+        mutableStateOf<Int>(1)
+    }
+    Counting(count = countState) { multipleSeven ->
+        if (multipleSeven)
+            countState += 3
+        else
+            countState++
+    }
+}
+
+@Composable
+fun CountingWithBrokenLocalState() {
+    var countState by remember {
+        mutableStateOf<Int>(1)
     }
     Counting(count = countState) { multipleSeven ->
         if (multipleSeven)
