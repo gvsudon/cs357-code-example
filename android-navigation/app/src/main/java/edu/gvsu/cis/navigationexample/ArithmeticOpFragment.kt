@@ -69,7 +69,7 @@ class ArithmeticOpFragment : Fragment() {
 
         // Remove previously set result so the observer does not fire multiple times
         navCtrl.previousBackStackEntry?.savedStateHandle?.let {
-            if (it.contains("result")!!) it.remove<Bundle>("result")
+            if (it.contains("result")) it.remove<Bundle>("result")
         }
     }
 
