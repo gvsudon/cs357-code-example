@@ -13,7 +13,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
-//import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -33,6 +32,8 @@ class MainActivity : ComponentActivity() {
                     Row {
                         CountingWithViewModel()
                         CountingWithLocalState()
+                        CountingWithBrokenLocalState()
+
                     }
                 }
             }
@@ -42,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CountingWithViewModel(vm: MainActivityViewModel = viewModel()) {
-    val countState by vm.counter.observeAsState(0)
+    val countState by vm.counter.observeAsState(100)
     var active by rememberSaveable {
         mutableStateOf<Boolean>(true)
 
@@ -58,7 +59,20 @@ fun CountingWithViewModel(vm: MainActivityViewModel = viewModel()) {
 @Composable
 fun CountingWithLocalState() {
     var countState by rememberSaveable {
-        mutableStateOf<Int>(9)
+        mutableStateOf<Int>(1)
+    }
+    Counting(count = countState) { multipleSeven ->
+        if (multipleSeven)
+            countState += 3
+        else
+            countState++
+    }
+}
+
+@Composable
+fun CountingWithBrokenLocalState() {
+    var countState by remember {
+        mutableStateOf<Int>(1)
     }
     Counting(count = countState) { multipleSeven ->
         if (multipleSeven)

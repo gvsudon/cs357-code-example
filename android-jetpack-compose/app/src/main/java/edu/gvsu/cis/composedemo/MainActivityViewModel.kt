@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainActivityViewModel:ViewModel() {
-    private val _counter: MutableLiveData<Int> = MutableLiveData(18)
+    private val _counter: MutableLiveData<Int> = MutableLiveData(1)
     val counter: LiveData<Int> get() = _counter
 
     fun countUp() {

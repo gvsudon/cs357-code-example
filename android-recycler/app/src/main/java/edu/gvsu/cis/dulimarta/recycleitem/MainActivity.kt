@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +45,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         recyclerView.layoutManager = LinearLayoutManager(this)
+        val listAnimation = AnimationUtils.loadLayoutAnimation(this, R.anim.list_anim)
+        recyclerView.layoutAnimation = listAnimation
         val swipeHelper: ItemTouchHelper = ItemTouchHelper(rightSwipeCallback)
         swipeHelper.attachToRecyclerView(recyclerView)
         myViewModel.updateType.observe(this) {
