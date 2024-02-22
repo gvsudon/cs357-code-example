@@ -7,13 +7,12 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/userInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="You successfully got here"
-        android:textSize="20sp"
+        tools:text="More details here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,18 +21,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Logout"
+        android:text="@string/signout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/add_one"
         app:layout_constraintTop_toBottomOf="@+id/userInfo" />
 
-    <TextView
-        android:id="@+id/userInfo"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/name_list"
+        android:layout_width="409dp"
+        android:layout_height="638dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoutBtn"
+        tools:listitem="@android:layout/simple_expandable_list_item_1" />
+
+    <Button
+        android:id="@+id/add_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_marginTop="8dp"
+        android:text="@string/add_1"
+        app:layout_constraintEnd_toStartOf="@+id/logoutBtn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/userInfo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
     <EditText
         android:id="@+id/uEmail"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
@@ -23,7 +23,7 @@
     <EditText
         android:id="@+id/uPass"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Login"
+        android:text="Signin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uPass" />
 
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="New Account"
+        android:text="Signup"
         app:layout_constraintEnd_toStartOf="@+id/loginBtn"
         app:layout_constraintTop_toBottomOf="@+id/uPass" />
 </androidx.constraintlayout.widget.ConstraintLayout>
