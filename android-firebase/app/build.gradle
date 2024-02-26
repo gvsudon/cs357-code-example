@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'edu.gvsu.cis.firebasedemo'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "edu.gvsu.cis.firebasedemo"
@@ -34,15 +34,16 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation platform('com.google.firebase:firebase-bom:31.4.0')
+    implementation platform('com.google.firebase:firebase-bom:32.7.2')
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'androidx.activity:activity-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
     implementation 'io.github.serpro69:kotlin-faker:1.14.0'
 
     testImplementation 'junit:junit:4.13.2'
