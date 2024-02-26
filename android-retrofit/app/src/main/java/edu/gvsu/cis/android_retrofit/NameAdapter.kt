@@ -1,28 +1,32 @@
 package edu.gvsu.cis.android_retrofit
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.squareup.picasso.Picasso
 
-
-class NameAdapter (val names: List<Person>): RecyclerView.Adapter<NameAdapter.NameViewHolder>() {
+class NameAdapter (val ctx: Context,
+    val names: List<PersonSimplified>): RecyclerView.Adapter<NameAdapter.NameViewHolder>() {
     class NameViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
-        var topText: TextView
-        var bottomText:TextView
+        val name: TextView
+        val email:TextView
+        val avatar: ImageView
         init {
-            topText = itemView.findViewById(android.R.id.text1)
-            bottomText = itemView.findViewById(android.R.id.text2)
+            name = itemView.findViewById(R.id.name)
+            email = itemView.findViewById(R.id.email)
+            avatar = itemView.findViewById(R.id.avatar)
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NameViewHolder {
         // Instead of using our own custom layout, this code uses the predefined
         // layout simple_list_item_2 which has two TextView called text1 and text2
         val v = LayoutInflater.from(parent.context)
-            .inflate(android.R.layout.simple_list_item_2, parent, false)
+            .inflate(R.layout.item_person, parent, false)
         return NameViewHolder(v)
     }
 
@@ -32,7 +36,8 @@ class NameAdapter (val names: List<Person>): RecyclerView.Adapter<NameAdapter.Na
 
     override fun onBindViewHolder(holder: NameViewHolder, position: Int) {
         val p = names[position]
-        holder.topText.text = "($position) ${p.name.first} ${p.name.last}"
-        holder.bottomText.text = p.email
+        holder.name.text = "(${position+1}) ${p.name}"
+        holder.email.text = p.email
+        Picasso.with(ctx).load(p.imageURL).into(holder.avatar)
     }
 }

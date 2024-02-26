@@ -10,7 +10,7 @@ import retrofit2.http.Query
 
 interface RandomUserApi {
     // Query string is     inc=name,email&results=N
-    @GET("api/?inc=name,email")
+    @GET("api/?inc=name,email,picture")
     suspend fun getRandomNames(@Query("results") N:Int): Response<RandomName>
 }
 object RandomUserClient {

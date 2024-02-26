@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.fetchBtn).setOnClickListener {
                 VM.getNames(10)
         }
-        myList.adapter = NameAdapter(VM.persons.value!!)
+        myList.adapter = NameAdapter(this, VM.persons.value!!)
         myList.layoutManager = LinearLayoutManager(this)
         VM.persons.observe(this) {
             myList.adapter?.notifyDataSetChanged()
