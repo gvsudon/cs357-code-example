@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.coroutineScope
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,15 @@ class MainActivity : AppCompatActivity() {
         val myList = findViewById<RecyclerView>(R.id.name_list)
         findViewById<Button>(R.id.fetchBtn).setOnClickListener {
                 VM.getNames(10)
+        }
+        val aButton = findViewById<Button>(R.id.ebird_btn)
+        aButton.setOnClickListener {
+            if (VM.getEBirdRegions())
+                Snackbar.make(aButton, "Check Your LogCat for Ebird Responses", Snackbar.LENGTH_LONG)
+                .show()
+            else
+                Snackbar.make(aButton, "Ebird Request failed. Check LogCat for details", Snackbar.LENGTH_LONG)
+                    .show()
         }
         myList.adapter = NameAdapter(this, VM.persons.value!!)
         myList.layoutManager = LinearLayoutManager(this)

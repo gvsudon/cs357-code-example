@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Fetch 10"
+        android:text="10 Random Names"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,4 +29,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fetchBtn"
         tools:listitem="@layout/item_person" />
+
+    <Button
+        android:id="@+id/ebird_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="EBird Regions"
+        app:layout_constraintBaseline_toBaselineOf="@+id/fetchBtn"
+        app:layout_constraintStart_toEndOf="@+id/fetchBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
