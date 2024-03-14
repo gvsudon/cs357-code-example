@@ -2,7 +2,9 @@ package edu.gvsu.cis.android_retrofit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val myList = findViewById<RecyclerView>(R.id.name_list)
+        val progress = findViewById<ProgressBar>(R.id.loading_prrogress)
+        progress.visibility = View.VISIBLE
         findViewById<Button>(R.id.fetchBtn).setOnClickListener {
                 VM.getNames(10)
         }
@@ -31,6 +35,12 @@ class MainActivity : AppCompatActivity() {
         myList.layoutManager = LinearLayoutManager(this)
         VM.persons.observe(this) {
             myList.adapter?.notifyDataSetChanged()
+        }
+        VM.downloadComplete.observe(this) {loadingDone ->
+            // Hide the progress bar
+            if (loadingDone) {
+                progress.visibility = View.GONE
+            }
         }
     }
 }
