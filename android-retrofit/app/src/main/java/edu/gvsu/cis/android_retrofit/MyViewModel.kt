@@ -44,8 +44,7 @@ class MyViewModel : ViewModel() {
         }
     }
 
-    fun getEBirdRegions(): Boolean {
-        var outcome: Boolean = false
+    fun getEBirdRegions() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = eBirdEndPoint.getAdjacentRegionsTo("US-MI")
             if (response.isSuccessful()) {
@@ -54,13 +53,10 @@ class MyViewModel : ViewModel() {
                     for (r in regions) {
                         println(r)
                     }
-                    outcome = true
                 }
             } else {
                 println("HTTP Error ${response.code()} ${response.message()}")
-                outcome = false
             }
         }
-        return outcome
     }
 }
