@@ -4,4 +4,6 @@ Pods
 .DS_Store
 recycler/
 **/**/deploymentTargetDropDown.xml
-dulimarh.xcuserdatad
+ios-livedata/ios-livedata.xcodeproj/project.xcworkspace/xcuserdata/dulimarh.xcuserdatad/UserInterfaceState.xcuserstate
+ios-navigation-data/ios-navigation-data.xcodeproj/project.xcworkspace/xcuserdata/dulimarh.xcuserdatad/UserInterfaceState.xcuserstate
+ios-navigation-data/ios-navigation-data.xcodeproj/xcuserdata/dulimarh.xcuserdatad/xcschemes/xcschememanagement.plist
