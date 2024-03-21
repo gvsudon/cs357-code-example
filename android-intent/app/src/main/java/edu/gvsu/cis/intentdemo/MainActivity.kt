@@ -9,6 +9,7 @@ import edu.gvsu.cis.intentdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+
     val yellowLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_OK) {
@@ -26,22 +27,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var stockName = binding.stockName.text.toString()
+        var stockQty = binding.stockQuantity.text.toString().toInt()
+
+        /* Transition to BLUE NO DATA */
         binding.noData.setOnClickListener {
             val toBlue = Intent(this, BlueActivity::class.java)
+
             startActivity(toBlue)
         }
+
+        /* Transition to ORANGE 1-WAY */
         binding.withDataOneway.setOnClickListener {
             val toOrange = Intent(this, OrangeActivity::class.java)
-            toOrange.putExtra("stock", "APPL")
-            toOrange.putExtra("unit", 300)
+            toOrange.putExtra("stock", stockName)
+            toOrange.putExtra("unit", stockQty)
+
             startActivity(toOrange)
         }
 
+        /* Transition to YELLOW 2-WAY */
         binding.withDataTwoWay.setOnClickListener {
             val toYellow = Intent(this, YellowActivity::class.java)
-            toYellow.putExtra("stock", "APPL")
-            toYellow.putExtra("unit", 300)
-
+            toYellow.putExtra("stock", stockName)
+            toYellow.putExtra("unit", stockQty)
 
             yellowLauncher.launch(toYellow)
         }
