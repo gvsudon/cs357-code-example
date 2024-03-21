@@ -11,6 +11,9 @@ import SnackBar
 
 class MainVC: UIViewController {
 
+    /*
+        This is like find by ID in kotlin
+     */
     @IBOutlet weak var liveCounterLabel: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var addBtn: UIButton!
@@ -41,7 +44,9 @@ class MainVC: UIViewController {
         }
     }
     
-
+    /*
+        @IBAction is used for user actions. Sliding things. Clicking things.
+     */
     @IBAction func addOneClicked(_ sender: Any) {
         VM.addOne()
     }
